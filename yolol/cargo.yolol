@@ -1,0 +1,20 @@
+d=1.05 Off=0 On=50000 OnT=On/10 OnH=On/100
+:CColor=0 :CBlink=0 :CWForce=Off :CWTorque=Off :CBeam=0 goto2+:CRun
+:CBlink=0 :CBeam=1 q=0 goto2+(:CRun*(2+:CObject))
+:CWForce=Off r=:CRangeT s=(r==q) q=r n=(n*s)+s goto2+(:CRun*(2+(n>15))
+:CColor=0 :CBlink=1 :CWForce=On :CWTorque=Off q=0 t=100
+r=:CRangeT o=t-r n=(r<q) q=r t-=(t/25) :CTo=t goto2+(:CRun*(4+n))
+n=o*2.828 t=d+n :CTo=o+t goto2+(:CRun*(5+(:CForce<1OR:CRangeT>(t-o))))
+:CColor=1 :CBlink=0 :CPitch=:OP*:CPM :CYaw=:OY*:CYM :CRoll=:OR*:CRM
+:CTo=100 :CWForce=Off :CWTorque=On-(On*1/:CRangeT)
+goto2+(:CRun*(6+(3*(:CTorque<1))))
+:CBlink=1 :CWForce=On :CWTorque=Off t=q+o :CTo=t q=0
+r=:CRangeT n=(r<q) q=r t-=1 :CTo=t goto2+(:CRun*(10+n))
+r=:CRangeT n=(r>q) q=r t+=.1 :CTo=t goto2+(:CRun*(11+n))
+r=:CRangeT n=(r<q) q=r t-=.01 :CTo=t goto2+(:CRun*(12+n))
+r=:CRangeT o=t-r goto2+(:CRun*(13+(:CForce<1)))
+:CColor=3 r=:CRangeT i=On-(On*.5/r) :CWForce=i :CWTorque=i :CTo=d+o
+goto2+(:CRun*(6+(8*(:CTorque<1))+(2*(r<=d*1.001))))
+:CColor=2 :CWForce=Off :CLock=1
+goto2+(:CRun*:CLock*(17+(:CStatus==2)))
+:CBlink=0 :CBeam=0 goto2+(:CRun*:CLock*18)
