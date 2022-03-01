@@ -1,0 +1,5 @@
+// Turret BRT Bottom Right (Top)
+DX=-(6.24+.96) DY=0 DZ=-(6.24-.96) LR=-90 MR=90 LP=-13 MP=90
+x=:cx-DX y=:cy-DY z=:cz-DZ r=(sqrt((x*x)+(y*y)+(z*z)))
+t=90-(-40*(x/r)^3-50*(x/r)+90)*(1-(y<0)*2) p=40*(z/r)^3+50*(z/r)
+:BRTRot=t*(t>LR AND t<MR) :BRTPit=p*(p>LP AND p<MP) goto3

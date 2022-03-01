@@ -1,0 +1,7 @@
+// Power Management
+LP=.5 HP=.9 m=:MaxBatteryPower n=0 z=150 lc=0
+s=:StoredBatteryPower r=s/m f=1-(r^6) i=:insideSafeZone c=:Cruise
+n=(n+1)*(r>HP)*(lc==c) h=((i<1 OR n<z) AND f<.5) u=(.5*h)+(f*(h<1))
+lc=c :FuelChamberUnitRateLimit=100*u goto3+(3*(r<LP AND c<1))
+f=:FcuForward/100 g=:FuelChamberUnitRate/100 a=(r+r+f+g)/4
+:FcuForward=((((a<=f)*a)+((f<a)*f))*100) goto3

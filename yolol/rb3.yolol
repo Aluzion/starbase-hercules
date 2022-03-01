@@ -1,0 +1,5 @@
+// Turret BRB Bottom Right (Bottom)
+DX=-(6.24+.96) DY=0 DZ=-(6.24+3*.96) LR=-90 MR=90 LP=-17 MP=59
+x=DX-:cx y=:cy-DY z=DZ-:cz r=sqrt(x*x+y*y+z*z) p=40*(z/r)^3+50*(z/r)
+q=(p>LP AND p<MP) t=90-(-40*(x/r)^3-50*(x/r)+90)*(1-(y<0)*2)
+u=(t>LR AND t<MR) :BRBRot=t*u :BRBPit=p*q :BRBLim=100*q*u goto3

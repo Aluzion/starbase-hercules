@@ -1,0 +1,5 @@
+// Ore Collector Duty Cycle
+o=:OreCollectorOn :OCA=o :OCB=o :OCC=0 :OCD=0
+o=:OreCollectorOn :OCA=0 :OCB=o :OCC=o :OCD=0
+o=:OreCollectorOn :OCA=0 :OCB=0 :OCC=o :OCD=o
+o=:OreCollectorOn :OCA=o :OCB=0 :OCC=0 :OCD=o goto2

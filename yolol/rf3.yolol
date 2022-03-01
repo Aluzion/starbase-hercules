@@ -1,0 +1,7 @@
+// Material Scanner(s)
+n="\n" o=" Ore" u="ium" t="ite" x=1728 goto2+2*(:Scanner>0)
+:ResetL=1 :ResetR=1 :Scanner=0 :ScanO=0 goto2
+:ScanO=1 i=:ScanResL-1 j=:ScanResR-1 :Scan="" goto4+(i>=0)+2*(j>=0) 
+:IndexL=i :Scan+=n+:VolumeL/x+" "+:MaterialL-o-u-t i-- goto3+2*(i>=0)
+:IndexR=j :Scan+=n+:VolumeR/x+" "+:MaterialR-o-u-t j-- goto3+3*(j>=0) 
+goto6

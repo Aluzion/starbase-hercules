@@ -1,0 +1,2 @@
+// Mining Laser Duty Cycle
+m=:MiningLaserOn n=((:ts*5)%2) :MLA=m*(n==0) :MLB=m*(n==1) goto2

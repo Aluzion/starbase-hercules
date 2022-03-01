@@ -1,0 +1,12 @@
+// Fuel Display
+n="\n" l="\n-----------" li=0 lt=0 tr=0 sr=0 x=1
+a=:Fuel1 b=:Fuel2 c=:Fuel3 d=:Fuel4 e=:Fuel5 f=:Fuel6 g=:Fuel7 
+h=:Fuel8 i=a+b+c+d+e+f+g+h di=(li-i) li=i t=:ts dt=(t-lt) lt=t 
+ir=(di/dt) r=i/ir tr+=r ++sr u=tr/sr v=(v-v%1) goto7-((sr%10)==0)
+tr*=.5 sr*=.5 sr=(sr-sr%1) v=tr/sr v=(v-v%1)
+ms=v%60 os=":"+ms x/=(ms<10) os=":0"+ms
+mm=(v%3600)/60 mm-=(mm%1) om=":"+mm x/=(mm<10) om=":0"+mm 
+mh=(v%86400)/3600 mh-=(mh%1) oh=":"+mh x/=(mh<10) oh=":0"+mh 
+md=(v/86400) md-=(md%1) est=md+oh+om+os x/=(md<10) est="0"+md+oh+om+os
+:FuelTR=n+(ir-ir%1)+"/s"+l+(a-a%1)+n+(b-b%1)+n+(c-c%1)+n+(d-d%1)
+:FuelBL=n+est+l+(e-e%1)+n+(f-f%1)+n+(g-g%1)+n+(h-h%1) goto3

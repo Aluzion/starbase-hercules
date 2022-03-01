@@ -1,0 +1,5 @@
+// Turret TLB Top Left (Bottom)
+DX=(6.24+.96) DY=0 DZ=(6.24-.96) LR=-90 MR=90 LP=-13 MP=90
+x=DX-:cx y=:cy-DY z=DZ-:cz r=(sqrt((x*x)+(y*y)+(z*z)))
+t=90-(-40*(x/r)^3-50*(x/r)+90)*(1-(y<0)*2) p=40*(z/r)^3+50*(z/r)
+:TLBRot=t*(t>LR AND t<MR) :TLBPit=p*(p>LP AND p<MP) goto3

@@ -1,0 +1,6 @@
+// Clock
+t=:ts-(:ts%1) s=t%60 os=":"+s x/=(s<10) os=":0"+s
+m=(t%3600)/60 m-=(m%1) om=":"+m x/=(m<10) om=":0"+m 
+h=(t%86400)/3600 h-=(h%1) oh=":"+h x/=(h<10) oh=":0"+h
+d=(t/86400) d-=(d%1) od=d x/=(d<10) od="0"+d
+:Time=od+oh+om+os goto2

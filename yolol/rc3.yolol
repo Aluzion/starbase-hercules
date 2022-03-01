@@ -1,0 +1,6 @@
+// Targeting 
+DX=0 DY=0 DZ=-4.56
+t=(90-:TRot)/180 p=(90-:TPit)/180 r=:TRng rz=(r<1) sp=4*p*(1-ABS p)
+cp=p^2*(-6+4*ABS p)+1 st=4*t*(1-ABS t) ct=t^2*(-6+4*ABS t)+1 
+:cx=r*sp*ct+DX :cy=r*sp*st+DY+(1000*rz) :cz=r*cp+DZ goto3+(3*:TReset)
+:TRot=0 :TPit=0 :TReset=0 goto3
