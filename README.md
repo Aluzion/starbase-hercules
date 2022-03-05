@@ -5,28 +5,30 @@
 
 ## Features
 
+* Endo-gernomic™ seats and dashboard.
 * Maximum speed (no cargo).
 * Modular cargo system.
 * Cartesian coordinate targeting system with 180/180 view.
 * Mining Laser and Ore Collector duty cycle.
-* Armored blast cage.
+* Armored Charodium blast cage.
 * Warp Drive Core.
 * Moon landing gear.
 * Rear Cargo Lock Beams.
 * Internal Radiators.
-* ISAN Navigation
-* 30 Waypoint System
+* ISAN Navigation.
+* 30 Waypoint System.
 
 ## Quick Start Guide
 
-1. There are no flight controls within reach. Keys must be binded. See [Recommended Key Bindings](#recommended-key-bindings).
-1. Once seated enable *-1* low, or *+1* high multiplier scaling with `C4`. Turn *On* Cruise Control and Power Management with `R2`. See [Flight Controls](#flight-controls).
+1. There are no flight controls within reach. Most default key bindings are used. For advanced use see [Recommended Key Bindings](#recommended-key-bindings).
+1. Once seated enable *-1* low, or *+1* high multiplier scaling with `C4`. See [Flight Controls](#flight-controls).
+1. When in flight turn *On* Cruise Control and Power Management with `R2`. See [Power Management](#power-management).
 1. Turn *On* the Range Finder with `C6`. See [Targeting System](#targeting-system).
 1. Fire Weapons with `L1` or turn *On* the Mining Lasers with `L2`.
 
 ## Control Panel
 
-| | Left | Center | Right |
+| | [L]eft | [C]enter | [R]ight |
 | :-: | :- | :- | :- |
 | | [![Controls Left Side](/assets/hercules-control-left.thumb.png)](/assets/hercules-control-left.png) | [![Controls Main](/assets/hercules-control-main.thumb.png)](/assets/hercules-control-main.png) | [![Controls Right Side](/assets/hercules-control-right.thumb.png)](assets/hercules-control-right.png) |
 | 1 | Weapons Fire (`Fire: [SPACE]`) | Forward Thrust (`FcuForward: [SHIFT]`) | Material Scanners (`Scanner: [L-ALT]`) |
@@ -40,29 +42,31 @@
 
 ## Flight Controls
 
-The ship uses dual flight-controllers (`FcuForwardMultiplier` and `FcuGeneralMultiplier`) with a separate variable for each. This allows separate control of the forward thrust and the remaining trim controls for backward, pitch, yaw and roll. All of the flight controls are mounted underneath the pilot's seat allowing key-bind control without cluttering the dashboard and reducing visibility. The multipliers can be changed quickly on the main control panel, or with key-binds for more granular control.
-
-See [Control Panel](#control-panel)
+The ship uses dual flight-controllers (`FcuForwardMultiplier` and `FcuGeneralMultiplier`) with a separate variable for each. This allows separate control of the forward thrust and the remaining trim controls for `FcuBackward`, `FcuRotationalPitch`, `FcuRotationalYaw` and `FcuRotationalRoll`. All of the flight controls are mounted underneath the pilot's seat to reduce clutter the increase visibility. The multipliers can be changed quickly on the main control panel (`C4`), or with custom key bindings for more granular control.
 
 > **Note**: The default multiplier uses a `FcuForwardMultiplier` of `70%`. This provides the optimal power and performance ratios with the default cargo module. The optimal ratios very depending on the mass of the cargo.
 
+See [Control Panel](#control-panel), [Recommended Key Bindings](#recommended-key-bindings)
+
 ## Power Management 
 
-Power is managed automatically in the XX script. 
+Power is managed automatically. 
 * High-idle mode is enabled as soon as the ship spawns and the fuel chambers up warmed up and set to 50%. This mode is disabled when the batteries are full (above 95%) for 2 consecutive minutes and can be re-enabled manually by toggling `Cruise` either on or off.
-* When Cruise is activated `FcuForward` scaling is enabled. When the battery power drop below 50% `FcuForward` is gradually reduced in order to avoid depleting the batteries. When using the cargo lock-beam to tow heavy modules then special attention must be given to the stored power level to ensure the cargo lock-beam is maintained while in flight.
+* When `Cruise` is activated `FcuForward` scaling is enabled. When the battery power drop below 50% `FcuForward` is gradually reduced in order to avoid depleting the batteries. When using the cargo lock-beam (`Clock`) to tow heavy modules then special attention must be given to the stored power level to ensure the cargo lock-beam is maintained while in flight.
 
-> **Note:** The power management script will only reduce the Forward control when Cruise is active and power is low. See [Power Management](#power-management)
+> **Note:** The power management script will only reduce the `FcuForward` control when `Cruise` is *On* and `StoredBatteryPower` < 50%. 
 
 ## Targeting System
 
-All weapon and tools utilize a 3D Polar to Cartesian target coordinate system. Each tool/weapon has a dedicated yolol script to ensure fast response (< 1s) to targeting control and fencing to prevent activation while pointed towards the ship. 
+All weapon and tools utilize a 3D Polar to Cartesian target coordinate system. Each tool/weapon has a dedicated yolol script to reduce targeting latency and fencing to prevent activation while pointed towards the ship.
 
 See [Control Panel](#control-panel)
 
-Key bindings are required in order to "point" the targeting system. When the range finder is disabled all of the weapons/tools point straight ahead. When the range finder is enabled the weapons/tools will point towards the target, focused at the target distance (`Trng`).
+Key bindings are required in order to "point" the targeting system. When the range finder (`Trng`) is disabled all of the weapons/tools point straight ahead. When the range finder is enabled all of the weapons/tools will point towards the target. If the range finder has no target in range, the `TARGETRANGE+` and `TARGETRANGE-` can be used to increase or decrease the target range manually.
 
-When a tool/weapon is obstructed and unable to safely point in the direction of the target it will remain at rest on the last valid direction and is disabled to prevent firing when the control is triggered. Special fields are modified on the weapons/tools to disable them in order to speed up availability once a safe LOS is re-established. 
+When a tool/weapon is obstructed by the ship and unable to safely point in the direction of the target it will remain stationary and the tool/weapon is disabled in order to prevent firing when triggered. Special fields are modified on the weapons/tools to disable them in order to speed up weapon readiness once a safe LOS is re-established.
+
+> **Note**: Advanced YOLOL Chips are used without trigonomic functions (SIN, COS, TAN). Polynomial approximations are substituted and the polar plane is translated in order to improve accuracy at desired angles. Not all angles have the same accuracy.
 
 ## Modular Cargo System
 
@@ -70,14 +74,20 @@ When a tool/weapon is obstructed and unable to safely point in the direction of 
 
 ![Modular Cargo System](/assets/hercules-back.png)
 
-==Still in development==
+> **Still in development**
+
 
 | [![Cargo LOS](/assets/hercules-cargo.thumb.png)](/assets/hercules-cargo.png) | [![Cargo LOS](/assets/hercules-cargo-1.thumb.png)](/assets/hercules-cargo-1.png) | [![Cargo LOS](/assets/hercules-cargo-2.thumb.png)](/assets/hercules-cargo-2.png) | [![Cargo LOS](/assets/hercules-weld-beams.thumb.png)](/assets/hercules-weld-beams.png) |
 | :-: | :-: | :-: | :-: |
 | Figure 1 | Figure 2 | Figure 3 | Figure 4 |
 
+The cargo docking system will automatically "dock" a compatible cargo module up to 100m away ([Figure 1](/assets/hercules-cargo.png)). The heavier a cargo module is, the longer it takes to dock/undock. Once a cargo module is docked it has the option to connect to the ships cable and pipe network, or it can run a separate independant network.
 
-The cargo docking system will automatically "dock" a compatible cargo module up to 100m away. The heavier a cargo module is, the longer it takes to dock/undock. Once a cargo module is docked it has the option to connect to the ships cable and pipe network, or it can run a separate independant network.
+When the docking routine is enabled the rear facing tractor beam will use a straight LOS to "lock" on to a cargo module up to 100m away ([Figure 3](/assets/hercules-cargo-2.png)). The ship should be oriented to point towards the cargo module using the flight controls in the rear seat ([Figure 2](/assets/hercules-cargo-1.png)).
+
+Once the cargo is docked, it can be towed by either using the cargo lock-beams, or welded to the ship on both sides ([Figure 4](/assets/hercules-weld-beams.png)). The cargo lock-beams (`CLock`) can be used to manually release the cargo while in flight, but with heavy cargo modules this may consume more power than the ship is able to generate, unless the cargo module is able to assist with its own power generation. 
+
+> **Note**: The ship strength rating will be greatly reduced while towing an unwelded cargo module with only the cargo lock-beams. This introduces different forces on the ship and the cargo module.
 
 The rear seat of the ship includes a full set of flight controls and multiplier scaling to allow ship movement and orientation prior to docking. 
 
@@ -99,11 +109,6 @@ The rear seat of the ship includes a full set of flight controls and multiplier 
 | R14 | The `Roll` angle sign, `-1` for negative angles, `+1` for positive angles. |
 | R15 | The `Roll` multiplier. `On` for 180 degrees, `Off` for 90 degrees. |
 
-When the docking routine is enabled the rear facing tractor beam will use a straight LOS to "lock" on to a cargo module up to 100m away. The ship should be oriented to point towards the cargo module using the flight controls in the rear seat.
-
-Once the cargo is docked, it can be towed by either using the cargo lock-beams, or welded to the ship on both sides as shown. The cargo lock-beams can be used to manually release the cargo while in flight, but with heavy cargo modules this may consume more power than the ship is able to generate, unless the cargo module is able to assist with its own power generation. 
-
-> **Note**: The ship strength rating will be greatly reduced while towing an unwelded cargo module with only the cargo lock-beams. This introduces different forces on the ship and the cargo module.
 
 > **Note**: To undock a cargo module the docking routine can be used to initially push the cargo to a safe distance before using the thrusters to move away.
 
@@ -128,6 +133,8 @@ The color of the button (`CRun`) indicates which step the routine is on:
 
 ## YOLOL Script Reference
 
+Horizontal scaling of yolol compute for abstraction and performance.
+
 ### Right Rack
 
 | Row | 1 | 2 | 3 | 4 |
@@ -149,11 +156,15 @@ The color of the button (`CRun`) indicates which step the routine is on:
 | RJ | [Waypoint System](/yolol/rj1.yolol) | [Waypoint System](/yolol/rj2.yolol) | [Waypoint System](/yolol/rj3.yolol) | [Waypoint System](/yolol/rj4.yolol) |
 | RK | **MC** [Waypoints 1-10](/yolol/rk1.yolol) | **MC** [Waypoints 11-20](/yolol/rk2.yolol) | **MC** [Waypoints 21-30](/yolol/rk3.yolol) | - |
 
+### Rear Rack
+
+[Cargo Docking Routine](/yolol/cargo.yolol) is located directly above the rear cargo seat.
+
 ## Recommended Key Bindings
 
-| Function | Key |
-| :- | :- |
-| `CRUISE` | `Z` |
+| Function | Key | Control Panel |
+| :- | :- | :- |
+| `CRUISE` | `Z` | `R2` |
 | `FCUBACKWARD+` | `BACKSPACE` |
 | `FCUFORWARD+` | `SHIFT` |
 | `FCUFORWARD-` | `CTRL` |
@@ -171,22 +182,18 @@ The color of the button (`CRun`) indicates which step the routine is on:
 | `FCUROTATIONALYAW-` | `Q` |
 | `FCUUPDOWN+` | `UP` |
 | `FCUUPDOWN-` | `DOWN` |
-| `FIRE` | `SPACE` |
-| `MININGLASERON` | `SPACE` |
-| `ORECOLLECTORON` | `X` |
-| `RANGEFINGER` | `KP_INSERT` |
-| `SCANNER` | `ALT` |
+| `FIRE` | `SPACE` | `L1` |
+| `MININGLASERON` | `SPACE` | `L2` |
+| `ORECOLLECTORON` | `X` | `R...` |
+| `RANGEFINGER` | `KP_INSERT` | `C6` |
+| `SCANNER` | `ALT` | `R1` |
 | `TARGETPITCH+` | `KP_UP` |
 | `TARGETPITCH-` | `KP_DOWN` |
 | `TARGETROTATION+` | `KP_RIGHT` |
 | `TARGETROTATION-` | `KP_LEFT` |
 | `TARGETRANGE+` | `PRIOR` |
 | `TARGETRANGE-` | `NEXT` |
-| `TRESET` | `KP_BEGIN` |
-| `PITCH+` | `S` |
-| `PITCH-` | `W` |
-| `YAW+` | `D` |
-| `YAW-` | `A` |
+| `TRESET` | `KP_BEGIN` | `C7` |
 
 ## Design Notes
 
@@ -195,7 +202,8 @@ The color of the button (`CRun`) indicates which step the routine is on:
 * Accessibile cable and pipe networks to ease repairs.
 * Compact design with minimal internal space to reduce weight.
 * Avoid yolol buffers and proxies for responsive controls.
-* Parallel yolol computing for simplicity and performance.
 * Never produce automated or unexpected movement in flight control. 
 
 ## Limitations and Warranty
+
+* As-Is Where Is
