@@ -207,3 +207,8 @@ Horizontal scaling of yolol compute for abstraction and performance.
 ## Limitations and Warranty
 
 * As-Is Where Is
+
+### Get Support, Provide Feedback
+
+[Browse the issues](/issues) to read existing discussions. 
+[Post a new issue](/issues/new) to post a bug, ask a question or  provide feedback. :)
