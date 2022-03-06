@@ -210,5 +210,5 @@ Horizontal scaling of yolol compute for abstraction and performance.
 
 ### Get Support, Provide Feedback
 
-[Browse the issues](/issues) to read existing discussions. 
-[Post a new issue](/issues/new) to post a bug, ask a question or  provide feedback. :)
+* [Browse the issues](https://github.com/Aluzion/starbase-hercules/issues) to read existing discussions. 
+* [Post a new issue](https://github.com/Aluzion/starbase-hercules/issues/new) to post a bug, ask a question or  provide feedback. :)
