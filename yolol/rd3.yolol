@@ -1,5 +1,5 @@
 // Fcu Multiplier Scaling
-FL=15 FH=70 GL=50 GH=100
+FL=15 FH=70 GL=80 GH=100
 s=:FcuScaling goto3+(s<0)+2*(s>0) 
 :FcuGeneralMultiplier=GL :FcuForwardMultiplier=FL :FcuScaling=0 goto3
 :FcuGeneralMultiplier=GH :FcuForwardMultiplier=FH :FcuScaling=0 goto3
