@@ -1,6 +1,6 @@
 // Gas Display
 n="\n" l=n+"-----------" lg=:GasNetworkStoredResource lt=0 s=0 c=0 x=1
-g=:GasNetworkStoredResource goto4+(8*(g==lg))
+g=:GasNetworkStoredResource m=:GasNetworkMaxResource goto4+(8*(g==lg))
 dg=(lg-g) lg=g t=:ts dt=(t-lt) lt=t 
 r=(dg/dt) s+=r ++c a=s/c goto7-((c%10)==0)
 s*=.5 c*=.5 c-=(c%1) a=s/c
@@ -9,4 +9,4 @@ mm=(ar%3600)/60 mm-=(mm%1) om=":"+mm x/=(mm<10) om=":0"+mm
 mh=(ar%86400)/3600 mh-=(mh%1) oh=":"+mh x/=(mh<10) oh=":0"+mh
 md=(ar/86400) md-=(md%1) od=md x/=(md<10) od="0"+md
 avg=a-(a%1) est=od+oh+om+os :Gas=n+est+n+avg+"/s"+l+(g-g%1) goto3
-:Gas=n+"--:--:--:--"+n+"0/s"+l+(g-g%1) goto3
+p=a*m*100 :Gas=n+"--:--:--:--"+n+"0/s"+l+(g-g%1)+n+(p-p%1)+"%" goto3
